@@ -1,0 +1,95 @@
+// Initial car data for Speed Motor
+export const INITIAL_PROPERTIES = [
+  {
+    id: 1,
+    name: 'Honda City 2022',
+    brand: 'Honda',
+    location: 'Kuala Lumpur',
+    price: 78000,
+    year: 2022,
+    mileage: 25000,
+    transmission: 'Automatic',
+    fuel: 'Petrol',
+    color: 'White',
+    image: 'https://placehold.co/800x500/3498DB/ffffff?text=Honda+City+2022',
+    description: 'Low mileage, full service history, accident free. Very clean unit.',
+    rooms: [{ id: 101, name: 'Standard', price: 78000, status: 'kosong', beds: [{ id: 1, name: 'This Car', occupied: false }], description: 'Standard variant' }]
+  },
+  {
+    id: 2,
+    name: 'Toyota Vios 2021',
+    brand: 'Toyota',
+    location: 'Petaling Jaya',
+    price: 72000,
+    year: 2021,
+    mileage: 35000,
+    transmission: 'Automatic',
+    fuel: 'Petrol',
+    color: 'Silver',
+    image: 'https://placehold.co/800x500/E74C3C/ffffff?text=Toyota+Vios+2021',
+    description: 'Good condition, owners transfer available. Original mileage.',
+    rooms: [{ id: 102, name: 'Standard', price: 72000, status: 'kosong', beds: [{ id: 1, name: 'This Car', occupied: false }], description: 'Standard variant' }]
+  },
+  {
+    id: 3,
+    name: 'Mazda CX-5 2023',
+    brand: 'Mazda',
+    location: 'Shah Alam',
+    price: 165000,
+    year: 2023,
+    mileage: 12000,
+    transmission: 'Automatic',
+    fuel: 'Petrol',
+    color: 'Red',
+    image: 'https://placehold.co/800x500/9B59B6/ffffff?text=Mazda+CX-5+2023',
+    description: 'Premium SUV, full sunroof, low mileage. Top spec model.',
+    rooms: [{ id: 103, name: 'Standard', price: 165000, status: 'kosong', beds: [{ id: 1, name: 'This Car', occupied: false }], description: 'High Spec variant' }]
+  },
+  {
+    id: 4,
+    name: 'Proton X70 2022',
+    brand: 'Proton',
+    location: 'Kuala Lumpur',
+    price: 85000,
+    year: 2022,
+    mileage: 30000,
+    transmission: 'Automatic',
+    fuel: 'Petrol',
+    color: 'Grey',
+    image: 'https://placehold.co/800x500/1ABC9C/ffffff?text=Proton+X70+2022',
+    description: 'Local SUV, warranty still active. Good fuel consumption.',
+    rooms: [{ id: 104, name: 'Standard', price: 85000, status: 'kosong', beds: [{ id: 1, name: 'This Car', occupied: false }], description: 'Standard variant' }]
+  },
+  {
+    id: 5,
+    name: 'Perodua Ativa 2023',
+    brand: 'Perodua',
+    location: 'Petaling Jaya',
+    price: 58000,
+    year: 2023,
+    mileage: 15000,
+    transmission: 'Automatic',
+    fuel: 'Hybrid',
+    color: 'Blue',
+    image: 'https://placehold.co/800x500/2ECC71/ffffff?text=Perodua+Ativa+2023',
+    description: 'Hybrid SUV, fuel efficient. Very popular model.',
+    rooms: [{ id: 105, name: 'Standard', price: 58000, status: 'kosong', beds: [{ id: 1, name: 'This Car', occupied: false }], description: 'Hybrid variant' }]
+  },
+  {
+    id: 6,
+    name: 'Honda HR-V 2022',
+    brand: 'Honda',
+    location: 'Shah Alam',
+    price: 98000,
+    year: 2022,
+    mileage: 28000,
+    transmission: 'Automatic',
+    fuel: 'Petrol',
+    color: 'Black',
+    image: 'https://placehold.co/800x500/3498DB/ffffff?text=Honda+HRV+2022',
+    description: 'Compact SUV, original mileage. Leather seats.',
+    rooms: [{ id: 106, name: 'Standard', price: 98000, status: 'ditempah', beds: [{ id: 1, name: 'This Car', occupied: true }], description: 'Standard variant' }]
+  }
+]
+
+export const BRANDS = ['Honda', 'Toyota', 'Mazda', 'Proton', 'Perodua']

@@ -1,0 +1,13 @@
+name = "rumah-sewa-api"
+main = "worker/index.js"
+compatibility_date = "2024-01-01"
+
+account_id = "c5596e6f2436b627c93b813f792982a8"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "rumah-sewa-images"
+
+[[d1_databases]]
+binding = "DB"
+database_id = "390a2324-710e-47d5-8bbf-78c466562d92"
