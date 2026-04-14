@@ -1,16 +1,27 @@
 import { useState, useRef } from 'react'
 import { ArrowLeft, Edit2, Trash2, Plus, Save, X, Upload, Car } from 'lucide-react'
+import { uploadImage } from '../imgbb'
 
 function ImageUpload({ value, onChange, label }) {
   const [preview, setPreview] = useState(value || null)
+  const [uploading, setUploading] = useState(false)
   const fileRef = useRef()
 
-  function handleFile(e) {
+  async function handleFile(e) {
     const file = e.target.files[0]
     if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => { setPreview(reader.result); onChange(reader.result) }
-      reader.readAsDataURL(file)
+      setUploading(true)
+      setPreview(URL.createObjectURL(file))
+      try {
+        const url = await uploadImage(file, 'speedmotor')
+        onChange(url)
+      } catch (err) {
+        console.error('Upload failed:', err)
+        const reader = new FileReader()
+        reader.onloadend = () => onChange(reader.result)
+        reader.readAsDataURL(file)
+      }
+      setUploading(false)
     }
   }
 
@@ -18,7 +29,7 @@ function ImageUpload({ value, onChange, label }) {
     <div>
       <label className="block text-xs font-semibold text-gray-600 mb-1">{label}</label>
       <div onClick={() => fileRef.current.click()} className="border-2 border-dashed border-gray-300 rounded-xl p-3 text-center cursor-pointer hover:border-red-400 transition-colors">
-        {preview ? <img src={preview} alt="Preview" className="max-h-32 mx-auto rounded-lg object-cover" /> : <div className="text-gray-400 text-sm"><Upload size={24} className="mx-auto mb-1" />Klik upload</div>}
+        {uploading ? <div className="text-gray-400 text-sm">Uploading...</div> : preview ? <img src={preview} alt="Preview" className="max-h-32 mx-auto rounded-lg object-cover" /> : <div className="text-gray-400 text-sm"><Upload size={24} className="mx-auto mb-1" />Klik upload</div>}
       </div>
       <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} className="hidden" />
     </div>
