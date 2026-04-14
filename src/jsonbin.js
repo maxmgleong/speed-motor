@@ -1,5 +1,5 @@
-const MASTER_KEY = '$2a$10$3HP31Mq0mqk0yAP.lLnlcuX0um7lcgHJe1Oww/7FbU.RnzzqZmGre'
-const BIN_ID = '69d9d993aaba882197e815db'
+const MASTER_KEY = '$2a$10$22OIAkr3WFThNKgBTkp/1eqihQ2iEFU.zhvEFCys5ZByKu.W42Asy'
+const BIN_ID = '69de529a856a682189327f6a'
 const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`
 
 export async function savePropertiesToCloud(properties) {
@@ -10,7 +10,7 @@ export async function savePropertiesToCloud(properties) {
         'Content-Type': 'application/json',
         'X-Master-Key': MASTER_KEY
       },
-      body: JSON.stringify({ properties, updatedAt: new Date().toISOString() })
+      body: JSON.stringify({ properties, tenants: [], updatedAt: new Date().toISOString() })
     })
     return response.ok
   } catch (error) {
@@ -37,19 +37,17 @@ export async function getPropertiesFromCloud() {
 
 export async function saveTenantsToCloud(tenants) {
   try {
-    // Get current data first
-    let currentData = { tenants: [] }
+    let currentData = { properties: [], tenants: [] }
     try {
       const getResp = await fetch(API_URL, {
         headers: { 'X-Master-Key': MASTER_KEY }
       })
       if (getResp.ok) {
         const record = await getResp.json()
-        currentData = { tenants: record.record?.tenants || [] }
+        currentData = { properties: record.record?.properties || [], tenants: record.record?.tenants || [] }
       }
     } catch (e) { /* ignore */ }
     
-    // Merge and save
     const mergedTenants = [...currentData.tenants, ...tenants.filter(t => 
       !currentData.tenants.some(ct => ct.appliedAt === t.appliedAt)
     )]
@@ -86,11 +84,10 @@ export async function getTenantsFromCloud() {
 }
 
 export async function uploadImage(file, folder = 'misc') {
-  // For JSONBin, we store images as base64 data URLs
   return new Promise((resolve) => {
     const reader = new FileReader()
     reader.onloadend = () => {
-      resolve(reader.result) // Return base64 data URL
+      resolve(reader.result)
     }
     reader.readAsDataURL(file)
   })
